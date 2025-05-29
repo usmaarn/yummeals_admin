@@ -1,5 +1,5 @@
 import AuthLayout from "@/layouts/auth";
-import { sleep } from "@/lib/utils";
+import { api } from "@/lib/api";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button, Divider, Form, Input, Typography } from "antd";
@@ -11,8 +11,8 @@ export const Route = createFileRoute("/_auth/login")({
 function RouteComponent() {
   const mutation = useMutation({
     mutationFn: async (values: any) => {
-      await sleep(2000);
-      console.log(values);
+      const response = await api.post("/auth/login", { data: values });
+      console.log(response);
     },
   });
 
