@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as authLoginImport } from './routes/(auth)/login'
-import { Route as authForgotPasswordImport } from './routes/(auth)/forgot-password'
+import { Route as AuthLoginImport } from './routes/_auth/login'
+import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
 
 // Create/Update Routes
 
@@ -23,14 +23,14 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const authLoginRoute = authLoginImport.update({
-  id: '/(auth)/login',
+const AuthLoginRoute = AuthLoginImport.update({
+  id: '/_auth/login',
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
 
-const authForgotPasswordRoute = authForgotPasswordImport.update({
-  id: '/(auth)/forgot-password',
+const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
+  id: '/_auth/forgot-password',
   path: '/forgot-password',
   getParentRoute: () => rootRoute,
 } as any)
@@ -46,18 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/(auth)/forgot-password': {
-      id: '/(auth)/forgot-password'
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
       path: '/forgot-password'
       fullPath: '/forgot-password'
-      preLoaderRoute: typeof authForgotPasswordImport
+      preLoaderRoute: typeof AuthForgotPasswordImport
       parentRoute: typeof rootRoute
     }
-    '/(auth)/login': {
-      id: '/(auth)/login'
+    '/_auth/login': {
+      id: '/_auth/login'
       path: '/login'
       fullPath: '/login'
-      preLoaderRoute: typeof authLoginImport
+      preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,21 +67,21 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/login': typeof authLoginRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/login': typeof authLoginRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/(auth)/forgot-password': typeof authForgotPasswordRoute
-  '/(auth)/login': typeof authLoginRoute
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/_auth/login': typeof AuthLoginRoute
 }
 
 export interface FileRouteTypes {
@@ -89,20 +89,20 @@ export interface FileRouteTypes {
   fullPaths: '/' | '/forgot-password' | '/login'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/forgot-password' | '/login'
-  id: '__root__' | '/' | '/(auth)/forgot-password' | '/(auth)/login'
+  id: '__root__' | '/' | '/_auth/forgot-password' | '/_auth/login'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  authForgotPasswordRoute: typeof authForgotPasswordRoute
-  authLoginRoute: typeof authLoginRoute
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  authForgotPasswordRoute: authForgotPasswordRoute,
-  authLoginRoute: authLoginRoute,
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/(auth)/forgot-password",
-        "/(auth)/login"
+        "/_auth/forgot-password",
+        "/_auth/login"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/(auth)/forgot-password": {
-      "filePath": "(auth)/forgot-password.tsx"
+    "/_auth/forgot-password": {
+      "filePath": "_auth/forgot-password.tsx"
     },
-    "/(auth)/login": {
-      "filePath": "(auth)/login.tsx"
+    "/_auth/login": {
+      "filePath": "_auth/login.tsx"
     }
   }
 }
